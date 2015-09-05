@@ -3,6 +3,7 @@ var GameView = Backbone.View.extend({
 	initialize: function(params){
 		//Set the model
 		this.model = params.model;
+
 		//Render
 		this.render();
 	},

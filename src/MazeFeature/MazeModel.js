@@ -123,7 +123,7 @@ var MazeModel = Backbone.Model.extend({
 		// };
 
 		//Set the player's starting position in the maze
-		this.get("maze")[this.get("playerStart")[0]][this.get("playerStart")[1]] = 2;
+		this.get("maze")[this.get("playerStart")[0]][this.get("playerStart")[1]] = 'P';
 	},
 
 	//A function to initialize the cheese indices in the maze
@@ -131,8 +131,10 @@ var MazeModel = Backbone.Model.extend({
 		//Populate an array of indicies
 		var xIndices = [], yIndices = [];
 		for(var i = 0; i < Math.floor(this.get("n")/2); ++i){
-			xIndices.push(i);
-			yIndices.push(i);
+			if(this.get("playerStart")[0] !== 2*i + 1)
+				xIndices.push(i);
+			if(this.get("playerStart")[1] !== 2*i + 1)
+				yIndices.push(i);
 		}
 
 		//The indices corresponding to cheese
@@ -154,7 +156,7 @@ var MazeModel = Backbone.Model.extend({
 		}
 
 		//The current cheese count
-		this.set("currCheeseCount", Math.floor(this.get("n")/2));
+		this.set("currCheeseCount", Math.floor(this.get("n")/2) - 1);
 	},
 
 	//A function to visually display the maze in the console
