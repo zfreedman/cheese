@@ -8,5 +8,7 @@ var Mazeview = Backbone.View.extend({
 	},
 
 	//Render function
-	render: function(){}
+	render: function(){
+    
+  }
 });

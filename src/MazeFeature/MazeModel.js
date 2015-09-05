@@ -2,6 +2,7 @@ var MazeModel = Backbone.Model.extend({
 
 	//Initialize function
 	initialize: function(params){
+		//The size of the maze (n x n)
 		this.set("n", params.n);
 		//Initialize maze
 		this.initializeMaze();
@@ -95,7 +96,7 @@ var MazeModel = Backbone.Model.extend({
 				if(currNeighbors.length > 0){
 					//Pick a random index
 					var randomNeighbor = currNeighbors[Math.floor(Math.random() * currNeighbors.length)];
-					console.log(randomNeighbor);
+					
 					//Push the current cell to the stack
 					stack.push([currPos["x"], currPos["y"]]);
 					//Remove wall between current cell and chosen cell
@@ -118,7 +119,7 @@ var MazeModel = Backbone.Model.extend({
 					currPos["y"] = stackTop[1];
 				}
 			}
-			console.log(this.get("maze"));
+			
 		// };
 
 		//Set the player's starting position in the maze
@@ -147,11 +148,13 @@ var MazeModel = Backbone.Model.extend({
 			yIndices = yIndices.slice(0, yIndex).concat(yIndices.slice(yIndex + 1));
 		}
 
-		console.log(cheeseIndices);
 		// console.log(cheeseIndices);
 		for(var i = 0; i < cheeseIndices.length; ++i){
 			this.get("maze")[cheeseIndices[i][0]][cheeseIndices[i][1]] = "*";
 		}
+
+		//The current cheese count
+		this.set("currCheeseCount", Math.floor(this.get("n")/2));
 	},
 
 	//A function to visually display the maze in the console
