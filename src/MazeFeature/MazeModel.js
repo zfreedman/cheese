@@ -13,6 +13,8 @@ var MazeModel = Backbone.Model.extend({
 		this.initializeEmptyMaze();
 		//Add maze walls
 		this.initializeMazeWalls();
+		//Add the cheese indices
+		this.initializeMazeCheese();
 	},
 
 	//A function to initialize a maze (array of n rows with n columns)
@@ -121,6 +123,35 @@ var MazeModel = Backbone.Model.extend({
 
 		//Set the player's starting position in the maze
 		this.get("maze")[this.get("playerStart")[0]][this.get("playerStart")[1]] = 2;
+	},
+
+	//A function to initialize the cheese indices in the maze
+	initializeMazeCheese: function(){
+		//Populate an array of indicies
+		var xIndices = [], yIndices = [];
+		for(var i = 0; i < Math.floor(this.get("n")/2); ++i){
+			xIndices.push(i);
+			yIndices.push(i);
+		}
+
+		//The indices corresponding to cheese
+		var cheeseIndices = [];
+		
+		//While their is an index left to add
+		while(xIndices.length > 0){
+			//Get a random x & y index
+			var xIndex = Math.floor(Math.random() * xIndices.length);
+			var yIndex = Math.floor(Math.random() * yIndices.length);
+			cheeseIndices.push([1 + 2*xIndices[xIndex], 1 + 2*yIndices[yIndex]]);
+			xIndices = xIndices.slice(0, xIndex).concat(xIndices.slice(xIndex + 1));
+			yIndices = yIndices.slice(0, yIndex).concat(yIndices.slice(yIndex + 1));
+		}
+
+		console.log(cheeseIndices);
+		// console.log(cheeseIndices);
+		for(var i = 0; i < cheeseIndices.length; ++i){
+			this.get("maze")[cheeseIndices[i][0]][cheeseIndices[i][1]] = "*";
+		}
 	},
 
 	//A function to visually display the maze in the console
