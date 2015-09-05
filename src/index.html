@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		Cheese
+	</title>
+</head>
+<body>
+	<!--Include bower dependencies-->
+	<script src="../bower_components/jquery/dist/jquery.min.js"></script><!--jQuery-->
+	<script src="../bower_components/underscore/underscore-min.js"></script><!--underscore-->
+	<script src="../bower_components/backbone/backbone.js"></script><!--Backbone-->
+
+	<!--Include game files-->
+
+	<!--Feature: Game-->
+	<script src="GameFeature/GameModel.js"></script>
+	<script src="GameFeature/GameView.js"></script>
+
+	<!--Feature: Maze-->
+	<script src="MazeFeature/MazeModel.js"></script>
+	<script src="MazeFeature/MazeView.js"></script>
+
+	<!--Feature: Main-->
+	<script>
+	var gameModel = new GameModel();
+	</script>
+</body>
+</html>
