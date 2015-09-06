@@ -1,0 +1,23 @@
+#container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 900px;
+  height: 900px;
+}
+
+#maze-bg {
+  margin: auto;
+  margin-top: 3%;
+  width: 90%;
+  height: 90%;
+  background-image: url('../img/castle-bg.png');
+  background-size: 180%;
+  background-position: center;
+  border-radius: 60px;
+}
+
+#maze {
+  background-color: #82172B;
+  width: 70%;
+  height: 70%;
+}

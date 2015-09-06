@@ -4,6 +4,8 @@
 	<title>Cheese</title>
 </head>
 <body>
+	<link rel="stylesheet" type="text/css" href="style/custom.css">
+
 	<!--Include bower dependencies-->
 	<script src="../bower_components/jquery/dist/jquery.min.js"></script><!--jQuery-->
 	<script src="../bower_components/underscore/underscore-min.js"></script><!--underscore-->
@@ -16,15 +18,10 @@
 	<script src="GameFeature/GameView.js"></script>
 
 	<!--Feature: Maze-->
+	<script src="MazeFeature/CellView.js" type="text/javascript"></script>
 	<script src="MazeFeature/MazeModel.js"></script>
 	<script src="MazeFeature/MazeView.js"></script>
 
-	<!--Feature: Main-->
-	<script>
-	//Create a game model and append to body
-	var gameModel = new GameModel();
-	var gameView = new GameView({model: gameModel});
-	$("body").append(gameView.$el);
-	</script>
+	<script src="app.js"></script>
 </body>
 </html>
