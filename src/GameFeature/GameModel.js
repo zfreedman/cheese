@@ -30,7 +30,7 @@ var GameModel = Backbone.Model.extend({
     var newPlayerPos = [params.direction[0] + playerPos[0],
     	params.direction[1] + playerPos[1]];
     //Check if position in maze is valid
-    var mazePos = this.get("mazeModel").get("maze")[newPlayerPos[0]][newPlayerPos[1]]
+    var mazePos = this.get("mazeModel").get("maze")[newPlayerPos[0]][newPlayerPos[1]];
     if(mazePos !== "|" && mazePos != "-"){
     	//Move is valid, move the player
     	//Old position is empty space
@@ -38,6 +38,10 @@ var GameModel = Backbone.Model.extend({
     	//New player pos is specified by a P
     	this.get("mazeModel").get("maze")[newPlayerPos[0]][newPlayerPos[1]] = "P";
     	this.get("mazeModel").set("playerStart", [newPlayerPos[0], newPlayerPos[1]]);
+    	//If the maze position was cheese, decrement cheese count
+    	if(mazePos === "*"){
+    		this.get("mazeModel").set("currCheeseCount", this.get("mazeModel").get("currCheeseCount") - 1);
+    	}
     	return true;
     }
     //Otherwise player move failed
