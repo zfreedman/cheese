@@ -2,7 +2,7 @@ var GameModel = Backbone.Model.extend({
 	// Initialize function
 	initialize: function(){
     //Set the current level to level 1
-    this.set("currLevel", 1);
+    this.set("currLevel", 0);
 		//Set the first level
     this.makeNextLevel();
 
@@ -12,8 +12,18 @@ var GameModel = Backbone.Model.extend({
 
   //A function to set the next level
   makeNextLevel: function(){
+  	//Update the current level
+  	this.set("currLevel", this.get("currLevel") + 1);
     //Maze model (for maze of size m, n = 2*m + 1)
     this.set("mazeModel", new MazeModel({n: 2*(this.get("currLevel") + 1) + 1}));
+    //Update the timer
+    this.setTimer();
+  },
+
+  //A function to setthe current timer
+  //to the current level + 3 squared
+  setTimer: function(){
+    this.set("currTimer", Math.pow(this.get("currLevel") + 3, 2));
   },
 
   //A function to move the player
